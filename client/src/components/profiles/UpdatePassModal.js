@@ -174,7 +174,7 @@ export default class UpdatePassModal extends Component {
       confirmPassword
     } = this.state;
     return (
-      <Modal basic onClose={this.resetModal}  open={open}>
+      <Modal basic onClose={this.resetModal} open={open}>
         <Grid columns={2} centered>
           <Grid.Column computer={6} mobile={11}>
             <Grid.Row id="header-cont">
@@ -280,10 +280,16 @@ export default class UpdatePassModal extends Component {
                   {sent ? "Resend   oldPassword" : "Forgot newPassword?"}
                 </span>
               </Form.Field> */}
-              <Button  loading={loading} type="submit" color="yellow">
+              <Button fluid loading={loading} type="submit" color="green">
                 {sent ? "Recover" : "Update Password"}
               </Button>
-              <Button  loading={loading} onClick={this.resetModal} color="red">
+              <Divider />
+              <Button
+                fluid
+                loading={loading}
+                onClick={this.resetModal}
+                color="red"
+              >
                 {sent ? "Recover" : "Cancel"}
               </Button>
             </Form>

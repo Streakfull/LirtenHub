@@ -284,6 +284,13 @@ class MemberProfile extends Component {
               del={this.del}
               edit={this.edit}
             />
+            {myProfile ? (
+              <RecommendedVacancies
+                myProfile={myProfile}
+                member={member}
+                id={id}
+              />
+            ) : null}
           </Grid.Column>
           <Grid.Column only="tablet" width={14}>
             <MemberBasicInfo isTablet={true} member={member} />
@@ -309,6 +316,13 @@ class MemberProfile extends Component {
               del={this.del}
               edit={this.edit}
             />
+            {myProfile ? (
+              <RecommendedVacancies
+                myProfile={myProfile}
+                member={member}
+                id={id}
+              />
+            ) : null}
           </Grid.Column>
           <Grid.Column only="computer" width={3} />
         </Grid>

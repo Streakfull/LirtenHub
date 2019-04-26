@@ -65,6 +65,7 @@ router.put(
       if (emailCheck)
         return res.status(400).json({ error: "Email already exists" });
       userData.reviews = user.userData.reviews;
+      userData.joinDate = user.userData.joinDate;
       const { dateOfBirth } = userData;
       const age =
         new Date().getFullYear() - new Date(dateOfBirth).getFullYear();

@@ -178,7 +178,6 @@ class LifeCoachProfile extends Component {
       }
     }
     if (!lifeCoach && !loading) return null;
-    console.log(lifeCoach, "LIFECOACH PROFILE");
     return (
       <div>
         <Dimmer active={loading}>

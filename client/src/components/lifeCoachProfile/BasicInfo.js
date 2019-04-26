@@ -146,12 +146,15 @@ class BasicInfo extends Component {
           </Grid>
         </Segment>
         {this.showEditButton() && [
-          <Button onClick={this.handleEdit} color="yellow">
-            Edit my Profile
-          </Button>,
-          <Button id="deleteButton" onClick={changePassword} color="yellow">
-            Update Password
-          </Button>,
+          <Button.Group key="buttonGroup">
+            <Button onClick={this.handleEdit} color="green">
+              Edit my Profile
+            </Button>
+            <Button.Or />
+            <Button onClick={changePassword} primary>
+              Update Password
+            </Button>
+          </Button.Group>,
           <Button id="deleteButton" onClick={deleteProfile} color="red">
             Delete Profile
           </Button>
