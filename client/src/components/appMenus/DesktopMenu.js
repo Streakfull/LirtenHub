@@ -37,6 +37,7 @@ class DesktopMenu extends Component {
       notifications,
       deleteNotifications
     } = this.props;
+    if (userInfo) console.log(userInfo, userInfo.image, "ADMIN");
     return (
       <Menu className="main-menu" borderless fixed="top">
         <Menu.Item>
@@ -63,7 +64,7 @@ class DesktopMenu extends Component {
               <Image
                 className="user-menu"
                 src={
-                  userInfo
+                  userInfo && userInfo.image
                     ? userInfo.image
                     : "https://react.semantic-ui.com/images/avatar/large/matthew.png"
                 }
