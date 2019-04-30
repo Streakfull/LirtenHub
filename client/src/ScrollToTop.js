@@ -4,12 +4,7 @@ const $ = window.$;
 class ScrollToTop extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
-      $("#scrollable-content > div > div, body").animate(
-        {
-          scrollTop: 0
-        },
-        300
-      );
+      window.scrollTo(0, 0);
     }
   }
 

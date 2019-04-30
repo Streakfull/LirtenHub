@@ -215,6 +215,7 @@ class App extends Component {
             notifications={notifications}
             deleteNotifications={this.deleteNotifications}
             redirectHome={this.redirectHome}
+            hideSidebar={this.hideSidebar}
           />
           <div
             onClick={this.hideSidebar}
