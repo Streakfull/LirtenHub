@@ -7,7 +7,7 @@ const axios = require("axios");
 const Subscribers = require("../../models/Subscriber");
 const User = require("../../models/User");
 const Notifications = require("../../models/Notifications");
-const Email = require("../../mail/notificationMail");
+const Email = require("../../mail/notificationmail");
 const nodemailer = require("nodemailer");
 //firebase setup
 firebase.initializeApp({
