@@ -778,6 +778,7 @@ class EditProfileForm extends React.Component {
                   disabled={!this.checkInput()}
                   color="yellow"
                   type="submit"
+                  fluid
                 >
                   Update
                 </Button>
