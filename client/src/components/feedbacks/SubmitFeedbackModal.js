@@ -60,7 +60,8 @@ class SubmitFeedbackModal extends Component {
           title: "Feedback!",
           body: `New feedback posted on your profile`,
           link: `/Partner/${partner._id}`,
-          actionTitle: "Visit"
+          actionTitle: "Visit",
+          img: partner.image
         }
       };
       axios.post(notifUrl, req).then(resp => console.log(resp));

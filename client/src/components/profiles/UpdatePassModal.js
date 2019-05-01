@@ -51,6 +51,8 @@ export default class UpdatePassModal extends Component {
       this.sendRecovery();
       return;
     }
+    const { loading } = this.state;
+    if (loading) return;
     this.setState({ loading: true });
     const {
       oldPassword,
@@ -81,7 +83,8 @@ export default class UpdatePassModal extends Component {
         this.setState({
           recoverCorrect: false,
           recovery: "",
-          confirmPassword: ""
+          confirmPassword: "",
+          loading: false
         });
         this.resetModal();
       })
@@ -94,7 +97,9 @@ export default class UpdatePassModal extends Component {
       });
   };
   updatePassword = () => {
-    let { newPassword, oldPassword } = this.state;
+    let { newPassword, oldPassword, loading } = this.state;
+    if (loading) return;
+    this.setState({ loading: true });
     const url = `users/updatePassword/${this.props.id}`;
     let body = {
       newPassword,
@@ -103,11 +108,15 @@ export default class UpdatePassModal extends Component {
     Axios.put(url, body)
       .then(response => {
         console.log(response);
-        this.setState({ open: false });
+        this.setState({ open: false, loading: false });
         this.props.closeUpdateModal();
       })
       .catch(error => {
-        this.setState({ error: error.response.data.error, hidden: false });
+        this.setState({
+          error: error.response.data.error,
+          hidden: false,
+          loading: false
+        });
       });
   };
   recover = () => {
@@ -284,12 +293,7 @@ export default class UpdatePassModal extends Component {
                 {sent ? "Recover" : "Update Password"}
               </Button>
               <Divider />
-              <Button
-                fluid
-                loading={loading}
-                onClick={this.resetModal}
-                color="red"
-              >
+              <Button fluid onClick={this.resetModal} color="red">
                 {sent ? "Recover" : "Cancel"}
               </Button>
             </Form>

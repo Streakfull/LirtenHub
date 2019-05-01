@@ -320,7 +320,8 @@ class SignUp extends React.Component {
               title: "Partner Pending Approval!",
               body: `A new partner requested approval`,
               link: `/Partners`,
-              actionTitle: "Visit"
+              actionTitle: "Visit",
+              img: data.data.data.image
             }
           };
           axios.post(notifUrl, req).then(resp => console.log(resp));
@@ -449,6 +450,7 @@ class SignUp extends React.Component {
                     icon="mail"
                     name="Email"
                     value={email}
+                    pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
                     onChange={e => this.handleAllChanges("email", e)}
                     placeholder="example@gmail.com"
                   />
@@ -466,7 +468,7 @@ class SignUp extends React.Component {
                   />
                 </Form.Field>
                 <Form.Field required>
-                  <label>UserType</label>
+                  <label>User Type</label>
                   <Dropdown
                     fluid
                     floating
@@ -489,6 +491,7 @@ class SignUp extends React.Component {
                           required
                           label="Birth Date"
                         />
+
                         {/* <Form.Field required>
                         <label>Gender</label> */}
                         <Form.Dropdown
@@ -614,7 +617,7 @@ class SignUp extends React.Component {
                         <Form.Dropdown
                           options={addedMembers}
                           selection
-                          label="Members"
+                          label="Board Members"
                           multiple
                           fluid
                           allowAdditions
@@ -666,7 +669,7 @@ class SignUp extends React.Component {
                           />
                         </Form.Field>
                       </Form.Group>,
-                      <Form.Group>
+                      <Form.Group widths="equal">
                         <Form.Input
                           value={hourlyRate}
                           fluid
@@ -681,8 +684,8 @@ class SignUp extends React.Component {
                       </Form.Group>
                     ]
                   : null}
-
                 <Button
+                  fluid
                   disabled={!this.checkInput()}
                   color="yellow"
                   type="submit"

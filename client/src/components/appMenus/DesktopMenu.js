@@ -37,7 +37,6 @@ class DesktopMenu extends Component {
       notifications,
       deleteNotifications
     } = this.props;
-    if (userInfo) console.log(userInfo, userInfo.image, "ADMIN");
     return (
       <Menu className="main-menu" borderless fixed="top">
         <Menu.Item>
@@ -97,13 +96,14 @@ class DesktopMenu extends Component {
                 >
                   {notificationCount > 0 ? (
                     <Label circular floating color="red">
-                      {notificationCount}
+                      <span id="notification-font"> {notificationCount} </span>
                     </Label>
                   ) : null}
                 </Icon>
 
                 {userInfo && openNotif ? (
                   <Notifications
+                    isDesktop={true}
                     deleteNotifications={deleteNotifications}
                     close={this.closeNotif}
                     openNotif={openNotif}

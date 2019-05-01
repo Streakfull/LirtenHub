@@ -58,7 +58,7 @@ class MobileMenu extends Component {
                 >
                   {notificationCount > 0 ? (
                     <Label circular floating color="red">
-                      {notificationCount}
+                      <span id="notification-font">{notificationCount}</span>
                     </Label>
                   ) : null}
                 </Icon>
