@@ -10,7 +10,8 @@ import {
   Dimmer,
   Loader,
   Form,
-  TextArea
+  TextArea,
+  List
 } from "semantic-ui-react";
 import "../../styling/applyModal.css";
 class SubmitFeedbackModal extends Component {
@@ -61,7 +62,7 @@ class SubmitFeedbackModal extends Component {
           body: `New feedback posted on your profile`,
           link: `/Partner/${partner._id}`,
           actionTitle: "Visit",
-          img:data.data.data.member.image
+          img: data.data.data.member.image
         }
       };
       axios.post(notifUrl, req).then(resp => console.log(resp));
@@ -118,7 +119,20 @@ class SubmitFeedbackModal extends Component {
                 </Header>
                 <Header as="h5">
                   Projects:{" "}
-                  <span>{partner ? partner.userData.projects : "N/a"}</span>
+                  <span>
+                    {partner ? (
+                      <List bulleted>
+                        {" "}
+                        {partner.userData.projects.map((project, index) => (
+                          <List.Item key={project + "" + index}>
+                            {project}
+                          </List.Item>
+                        ))}
+                      </List>
+                    ) : (
+                      "N/A"
+                    )}
+                  </span>
                 </Header>
               </Grid.Column>
               <Grid.Column stretched>
