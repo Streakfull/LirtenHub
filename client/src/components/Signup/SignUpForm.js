@@ -16,7 +16,8 @@ import {
   Container,
   Dimmer,
   Loader,
-  Icon
+  Icon,
+  Popup
 } from "semantic-ui-react";
 import "../../styling/signup.css";
 const firebase = require("firebase");
@@ -107,7 +108,47 @@ class SignUp extends React.Component {
     addedPartners: [],
     loading: false,
     user_id: "",
-    hidden: true
+    hidden: true,
+    errorFieldName: "",
+    errorFieldMessage: ""
+  };
+  validateData = () => {
+    const {
+      password,
+      name,
+      phone,
+      salary,
+      isSuper,
+      fax,
+      address,
+      approved,
+      hourlyRate,
+      fieldOfWork,
+      type,
+      dateOfBirth
+    } = this.state.userInfo;
+    //checking name only includes letters
+    for (let i = 0; i < name.length; i++) {
+      if (
+        (name.charCodeAt(i) < 65 || name.charCodeAt(i) > 122) &&
+        name.charCodeAt(i) !== 32
+      ) {
+        this.setErrorField(
+          "name",
+          "Name cannot contain special characters or numbers"
+        );
+        return false;
+      }
+    }
+    //password > 6
+    if (password.length < 6) {
+      this.setErrorField("password", "Password must be atleast 6 characters");
+      return false;
+    }
+    return true;
+  };
+  setErrorField = (errorFieldName, errorFieldMessage) => {
+    this.setState({ errorFieldName, errorFieldMessage });
   };
   handleAllChanges = (prop, e) => {
     let { userInfo } = this.state;
@@ -117,7 +158,11 @@ class SignUp extends React.Component {
         userInfo[key] = e.target.value;
       }
     });
-    this.setState({ userInfo: userInfo });
+    this.setState({
+      userInfo: userInfo,
+      errorFieldName: "",
+      errorFieldMessage: ""
+    });
   };
   componentDidMount() {
     this.setState({ reserveAttrs: this.state.userInfo });
@@ -275,6 +320,10 @@ class SignUp extends React.Component {
   signUp = () => {
     let { type } = this.state.userInfo;
     let { memberAttrs, partnerAttrs, lifeCoachAttrs } = this.state;
+    if (!this.validateData()) {
+      window.scroll(0, 0);
+      return;
+    }
     let url =
       type === "Member"
         ? "users/members/create"
@@ -393,7 +442,9 @@ class SignUp extends React.Component {
       addedPartners,
       loading,
       addedMembers,
-      addedProjects
+      addedProjects,
+      errorFieldName,
+      errorFieldMessage
     } = this.state;
 
     return (
@@ -415,9 +466,10 @@ class SignUp extends React.Component {
                 error
                 onSubmit={this.signUp}
               >
-                <Header inverted as="h1">
+                <Header textAlign="left" inverted as="h1">
                   {" "}
-                  Join LirtenHub{" "}
+                  Join Lirten Hub{" "}
+                  <Header.Subheader>A world of opportunities</Header.Subheader>
                 </Header>
                 {!hidden && (
                   <Message icon hidden={hidden} error size="small">
@@ -429,16 +481,24 @@ class SignUp extends React.Component {
                 )}
                 <Form.Field required>
                   <label>Name</label>
-                  <Input
-                    inverted
-                    fluid
-                    type="name"
-                    iconPosition="left"
-                    icon="male"
-                    name="name"
-                    value={name}
-                    onChange={e => this.handleAllChanges("name", e)}
-                    placeholder="Peter Johnson"
+                  <Popup
+                    style={{ color: "red" }}
+                    trigger={
+                      <Input
+                        inverted
+                        fluid
+                        type="name"
+                        iconPosition="left"
+                        icon="male"
+                        name="name"
+                        value={name}
+                        error={errorFieldName === "name"}
+                        onChange={e => this.handleAllChanges("name", e)}
+                        placeholder="Peter Johnson"
+                      />
+                    }
+                    content={errorFieldMessage}
+                    open={errorFieldName === "name"}
                   />
                 </Form.Field>
                 <Form.Field required>
@@ -455,18 +515,27 @@ class SignUp extends React.Component {
                     placeholder="example@gmail.com"
                   />
                 </Form.Field>
-                <Form.Field required>
-                  <label>Password</label>
-                  <Input
-                    icon="lock"
-                    fluid
-                    iconPosition="left"
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={e => this.handleAllChanges("password", e)}
-                  />
-                </Form.Field>
+                <Popup
+                  style={{ color: "red", marginBottom: "-1em" }}
+                  trigger={
+                    <Form.Field required>
+                      <label>Password</label>
+                      <Input
+                        icon="lock"
+                        fluid
+                        iconPosition="left"
+                        type="password"
+                        name="password"
+                        value={password}
+                        error={errorFieldName === "password "}
+                        onChange={e => this.handleAllChanges("password", e)}
+                      />
+                    </Form.Field>
+                  }
+                  content={errorFieldMessage}
+                  open={errorFieldName === "password"}
+                />
+
                 <Form.Field required>
                   <label>User Type</label>
                   <Dropdown
@@ -577,8 +646,11 @@ class SignUp extends React.Component {
                         />
 
                         <Form.Input
+                          type="tel"
                           value={phone}
+                          pattern={"^[0-9]{5,11}$"}
                           fluid
+                          placeholder={"5-11 digits"}
                           onChange={e => this.handleAllChanges("phone", e)}
                           label="Phone"
                         />
