@@ -111,7 +111,7 @@ class App extends Component {
     this.props.dispatch(UserActions.AC_logIn(userInfoToken));
     const url = `notifications/${userInfoToken.id}`;
     get(url).then(notifications => {
-      notifications = notifications.sort((a, b) => {
+      notifications = notifications.reverse().sort((a, b) => {
         if (!a.read) {
           if (b.read) return -1;
         }

@@ -39,6 +39,7 @@ router.post("/create", async (req, res) => {
   });
   return res.json({ data: user });
 });
+
 router.put(
   "/update/:id",
   passport.authenticate("jwt", { session: false }),
