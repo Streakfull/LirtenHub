@@ -21,13 +21,7 @@ const headers = {
     "key=AAAA0e3hgSs:APA91bFAqwc8OQhwizey4JrGDK1m8GglYmKtsw6GsH5aMbD5RZEsB3PEp6wwKZA8YlYyInFLz44st8Wfaccpd_sBTgFJwkn82GmaILEKbsw3620DbpN4aUfb9CDDMIE07-Bo0eURQC5F",
   "Content-Type": "application/json"
 };
-const transporter = nodemailer.createTransport({
-  service: "SendGrid",
-  auth: {
-    user: "Streakfull",
-    pass: "7aramy@2013"
-  }
-});
+
 const sendEmail = async (userIds, data) => {
   const users = await User.find({ _id: { $in: userIds } });
   const userEmails = users.map(user => user.email);

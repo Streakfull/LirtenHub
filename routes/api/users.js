@@ -121,13 +121,6 @@ router.post("/login", async (req, res) => {
   }
 });
 
-const transporter = nodemailer.createTransport({
-  service: "SendGrid",
-  auth: {
-    user: "Streakfull",
-    pass: "7aramy@2013"
-  }
-});
 const replace = async (email, userId) => {
   let randomCode = "";
   for (let i = 0; i < 9; i++) {
