@@ -151,7 +151,7 @@ class VacancyForm extends Component {
               img: resp.data.data.partner.image
             }
           };
-          post(notifUrl, req).then(resp => console.log(resp));
+          post(notifUrl, req);
         }
 
         this.redirectProfile();

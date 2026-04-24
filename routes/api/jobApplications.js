@@ -20,7 +20,7 @@ router.get("/:id", async (req, res) => {
       return res.status(400).send({ error: "Job Application not found" });
     return res.json({ data: jobApplication });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.sendStatus(400);
   }
 });
@@ -40,7 +40,7 @@ router.get(
       const vacancyApplications = await JobApplication.find(query);
       return res.json({ data: vacancyApplications });
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   }
@@ -57,7 +57,7 @@ router.get("/MemberApplications/:memberId", async (req, res) => {
     const memberApplications = await JobApplication.find(query);
     return res.json({ data: memberApplications });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.sendStatus(400);
   }
 });
@@ -90,7 +90,7 @@ router.post(
       });
       return res.json({ data: jobApplication });
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   }
@@ -123,7 +123,7 @@ router.put(
       await JobApplication.updateOne({ _id: id }, { applicationText, state });
       return res.sendStatus(200);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   }
@@ -146,7 +146,7 @@ router.delete(
       const deletedJobApplication = await JobApplication.findByIdAndRemove(id);
       return res.sendStatus(200);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   }

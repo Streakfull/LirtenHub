@@ -107,7 +107,6 @@ export default class UpdatePassModal extends Component {
     };
     Axios.put(url, body)
       .then(response => {
-        console.log(response);
         this.setState({ open: false, loading: false });
         this.props.closeUpdateModal();
       })

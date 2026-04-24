@@ -82,7 +82,7 @@ router.put(
       await User.updateOne(query, { name, email, image, userData });
       return res.sendStatus(200);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   }

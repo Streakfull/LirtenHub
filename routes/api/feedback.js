@@ -34,7 +34,7 @@ router.post(
       await updateGlobal(newPartner, updateOptions);
       return res.json({ data: feedback });
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   }
@@ -49,7 +49,7 @@ router.get("/readPartnerFeedbacks/:partnerId", async (req, res) => {
       return res.status(400).send({ error: "partner not found" });
     return res.json({ data: partner.userData.feedback });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.sendStatus(400);
   }
 });
@@ -69,7 +69,7 @@ router.get("/readFeedback/:feedbackId", async (req, res) => {
       return res.status(400).send({ error: "feedback not found" });
     return res.json({ data: resultFeedback });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.sendStatus(400);
   }
 });
@@ -105,7 +105,7 @@ router.put(
       await updateGlobal(newPartner, updateOptions);
       return res.sendStatus(200);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   }
@@ -143,7 +143,7 @@ router.delete(
       await updateGlobal(newPartner, updateOptions);
       res.sendStatus(200);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   }

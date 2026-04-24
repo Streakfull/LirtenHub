@@ -52,13 +52,6 @@ const update_review_member = async (_id, partner) => {
     );
   });
   await Promise.all(promises);
-
-  /*await User.updateMany(query, {
-    $set: { "userData.reviews.$.partner": partner }
-  });
-  // global update members goes here
-  /*const updateMember = require("./updateMember");
-  console.log(updateMember);*/
 };
 const promiseHelper = async (
   member,

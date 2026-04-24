@@ -14,11 +14,8 @@ import { Provider } from "react-redux";
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
     .register("../firebase-messaging-sw.js")
-    .then(function(registration) {
-      console.log("Registra tion successful, scope is:", registration.scope);
-    })
-    .catch(function(err) {
-      console.log("Service worker registration failed, error:", err);
+    .catch(function (err) {
+      console.error("Service worker registration failed:", err);
     });
 }
 const store = createStore(UserReducer);

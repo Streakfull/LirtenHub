@@ -172,19 +172,15 @@ class SignUp extends React.Component {
       .messaging()
       .requestPermission()
       .then(function(e = null) {
-        console.log("Granted!" + e);
 
         return firebase.messaging().getToken();
       })
       .then(token => {
         const url = "subscribers/add";
-        axios.post(url, { userId, token }).then(resp => console.log(resp));
-        console.log("Token:" + token + " " + userId);
+        axios.post(url, { userId, token });
         this.props.dispatch(AC_set_firebaseToken(token));
       })
       .catch(function(err) {
-        console.log(err, "ERROR");
-        console.log("Error! :: " + err);
       });
   };
   checkInputArray = arr => {
@@ -275,7 +271,6 @@ class SignUp extends React.Component {
     });
   };
   //   handleChangeGeneral = (prop,e,{value}) => {
-  //       console.log(e,value,"EVENT")
   //     // let { userInfo } = this.state;
   //     // if (userInfo) {
   //     //   userInfo[prop] = e.target.value;
@@ -373,10 +368,9 @@ class SignUp extends React.Component {
               img: data.data.data.image
             }
           };
-          axios.post(notifUrl, req).then(resp => console.log(resp));
+          axios.post(notifUrl, req);
         }
         this.setState({ hidden: true });
-        console.log(data);
         let body = {
           email: newData.email,
           password: newData.password

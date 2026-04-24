@@ -68,10 +68,9 @@ class Slots extends Component {
             img: member.image
           }
         };
-        post(notifUrl, req).then(resp => console.log(resp));
+        post(notifUrl, req);
       })
       .catch(error => {
-        console.log(error);
         this.props.toggleError();
         this.props.toggleLoading();
       });
@@ -105,7 +104,7 @@ class Slots extends Component {
               "https://cdn.pixabay.com/photo/2016/03/31/14/37/check-mark-1292787__340.png"
           }
         };
-        post(notifUrl, req).then(resp => console.log(resp));
+        post(notifUrl, req);
       })
       .catch(error => {
         this.props.toggleError();
@@ -123,7 +122,6 @@ class Slots extends Component {
         this.setState({ deleteLoading: false, deletedId: "" });
       })
       .catch(error => {
-        console.log(error);
         this.props.toggleError();
         this.props.toggleLoading();
       });

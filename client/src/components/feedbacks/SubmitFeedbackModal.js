@@ -65,7 +65,7 @@ class SubmitFeedbackModal extends Component {
           img: data.data.data.member.image
         }
       };
-      axios.post(notifUrl, req).then(resp => console.log(resp));
+      axios.post(notifUrl, req);
       this.props.addFeedBack(data.data);
       this.setState({ loading: false });
       this.props.close();
@@ -85,7 +85,6 @@ class SubmitFeedbackModal extends Component {
       })
 
       .catch(error => {
-        console.log(error);
       });
     this.setState({ hidden: this.props.hidden });
   }

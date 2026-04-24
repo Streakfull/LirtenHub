@@ -78,7 +78,6 @@ export default class Container extends Component {
     this.setState({ currentRate });
   };
   handleRatingFilter = currentRating => {
-    console.log(currentRating, "HIII");
     this.setState({ currentRating });
   };
   handleGenderFilter = currentGender => {

@@ -35,7 +35,6 @@ class Partners extends Component {
   }
   componentWillReceiveProps(nextProps) {
     const { userInfo, partners } = this.state;
-    console.log(userInfo, nextProps.userInfo);
     if (nextProps.userInfo !== userInfo) {
       if (nextProps.userInfo) {
         if (nextProps.userInfo.type === "admin") this.setData(partners, true);
@@ -114,7 +113,7 @@ class Partners extends Component {
             "https://cdn.pixabay.com/photo/2016/03/31/14/37/check-mark-1292787__340.png"
         }
       };
-      post(notifUrl, req).then(resp => console.log(resp));
+      post(notifUrl, req);
     });
   };
   openConfirm = deletedId => {
@@ -129,7 +128,6 @@ class Partners extends Component {
     );
     partners.splice(partnerIndex, 1);
     this.setState({ partners });
-    console.log(partners);
     this.setData(partners, true);
     const url = "users/delete/" + deletedId;
     del(url, {});

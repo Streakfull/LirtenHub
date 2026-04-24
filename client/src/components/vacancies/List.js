@@ -50,9 +50,7 @@ class List extends Component {
         let url =
           "vacancies/updateRecommendation/" + memberId + "/" + vacancy._id;
         let body = {};
-        console.log("In updateRcomm");
         post(url, body).then(resp => {
-          console.log(resp);
         });
       }
     }

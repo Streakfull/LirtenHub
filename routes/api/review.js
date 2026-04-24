@@ -42,7 +42,7 @@ router.post(
       await updateGlobal(newMember, updateOptions);
       return res.json({ data: newReview });
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   }
@@ -57,7 +57,7 @@ router.get("/readMemberReviews/:memberId", async (req, res) => {
       ? res.json({ data: member.userData.reviews })
       : [res.status(400).json({ err: "Member Not Found" })];
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.sendStatus(400);
   }
 });
@@ -81,7 +81,7 @@ router.get("/readReview/:reviewId", async (req, res) => {
     });
     if (!found) return res.status(400).json({ err: "Review Not Found" });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.sendStatus(400);
   }
 });
@@ -138,7 +138,7 @@ router.put(
       await updateGlobal(newMember, updateOptions);
       return res.sendStatus(200);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   }
@@ -173,7 +173,7 @@ router.delete(
       await updateGlobal(newMember, updateOptions);
       res.sendStatus(200);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   }

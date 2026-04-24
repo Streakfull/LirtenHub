@@ -32,7 +32,6 @@ class LocationModal extends Component {
         //this.props.getLifeCoach();
       })
       .catch(error => {
-        console.log(error);
         this.setState({
           error: error.response.data.error,
           loading: false

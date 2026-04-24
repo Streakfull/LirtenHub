@@ -1,5 +1,4 @@
 module.exports = {
-  mongoURI:
-    "mongodb+srv://streakfull:7aramy%402013@overflow-i0iu7.mongodb.net/test?retryWrites=true",
-  secretOrKey: "verysecretkey"
+  mongoURI: process.env.MONGO_URI || "mongodb://localhost:27017/lirtenhub",
+  secretOrKey: process.env.SECRET || "development_secret"
 };

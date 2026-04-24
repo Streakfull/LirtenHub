@@ -25,20 +25,12 @@ mongoose
     dbConfig
   )
   .then(() => console.log("Connected to MongoDB"))
-  .catch(err => console.log(err));
+  .catch(err => console.error(err));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(passport.initialize());
 // Passport configuration
 require("./config/passport")(passport);
-
-//firebase serviceworker
-app.get("/messageTest", (req, res) => {
-  res.sendFile(path.join(__dirname + "/messageTest.html"));
-});
-/*app.get("/firebase-messaging-sw.js", (req, res) => {
-  res.sendFile(path.join(__dirname + "/firebase-messaging-sw.js"));
-});*/
 
 // API Routes go here
 app.use("/api/users", users);
@@ -52,7 +44,6 @@ app.use("/api/notifications", notifications);
 
 recommender.setVacanciesProperties();
 recommender.setMemberProperties();
-// recommender.resetDatabase();
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {

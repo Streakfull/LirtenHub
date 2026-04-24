@@ -19,7 +19,7 @@ router.get("/LifeCoachSlots/:lifeCoachId", async (req, res) => {
       return res.status(400).send({ error: "life coach not found" });
     return res.json({ data: lifeCoach.userData.monthlySlots });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.sendStatus(400);
   }
 });
@@ -38,7 +38,7 @@ router.get("/readSlot/:slotId", async (req, res) => {
     if (!resultSlot) return res.status(400).send({ error: "slot not found" });
     return res.json({ data: resultSlot });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.sendStatus(400);
   }
 });
@@ -79,7 +79,7 @@ router.post(
       await User.updateOne({ _id: lifeCoachId, type: "lifeCoach" }, lifeCoach);
       return res.json({ data: newSlot });
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   }
@@ -134,7 +134,7 @@ router.put(
       await User.updateOne({ _id: lifeCoachId, type: "lifeCoach" }, lifeCoach);
       return res.sendStatus(200);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   }
@@ -166,7 +166,7 @@ router.delete(
       await User.updateOne({ _id: lifeCoachId, type: "lifeCoach" }, lifeCoach);
       res.sendStatus(200);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   }

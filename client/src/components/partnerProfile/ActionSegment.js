@@ -14,7 +14,6 @@ export default class ActionSegment extends Component {
       memberType
     } = this.props;
     if (!myProfile && !memberType) return null;
-    console.log(changePassword, "HII");
     return (
       <Segment padded id="action-segment">
         {myProfile ? (

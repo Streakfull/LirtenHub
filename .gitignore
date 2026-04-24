@@ -1,3 +1,6 @@
-node_modules/*
+node_modules/
 package-lock.json
-server/node_modules
+.env
+config/keys_dev.js
+services/adminKey.json
+.DS_Store

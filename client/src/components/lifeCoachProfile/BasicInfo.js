@@ -44,7 +44,6 @@ class BasicInfo extends Component {
 
   handleRate = (e, { rating, maxRating }) => {
     let lifeCoach = this.props.lifeCoach;
-    console.log(lifeCoach, "LIFECOACH");
     const {
       name,
       email,

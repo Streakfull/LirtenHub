@@ -70,7 +70,7 @@ export default class JobAppsModal extends Component {
               img: notif.vacancy.partner.image
             }
           };
-          post(notifUrl, req).then(resp => console.log(resp));
+          post(notifUrl, req);
           const vacancyUrl = `vacancies/update/${vacancyId}`;
           const { _id, __v, partner, acceptedMember, ...data } = vacancy;
           data.partnerId = partner._id;
@@ -97,13 +97,11 @@ export default class JobAppsModal extends Component {
               img: notif.vacancy.partner.image
             }
           };
-          post(notifUrl, req).then(resp => console.log(resp));
+          post(notifUrl, req);
           this.setState({ jobApplications, actionId: "", action: "" });
         }
       })
       .catch(error => {
-        console.log(error, "ERORR");
-        console.log(error.response);
         this.setState({ error: true });
       });
   };

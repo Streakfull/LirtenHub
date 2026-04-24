@@ -32,7 +32,7 @@ router.get("/:id", async (req, res) => {
     if (!user) return res.status(400).send({ error: "id not found" });
     return res.json({ data: user });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.sendStatus(400);
   }
 });
@@ -53,7 +53,7 @@ router.delete(
       if (deletedUser.type === "partner") await deletePartner(id);
       return res.sendStatus(200);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   }
@@ -85,7 +85,7 @@ router.put(
       await User.updateOne({ _id: id }, { password: hashedPassword });
       return res.sendStatus(200);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return res.status(400);
     }
   }
@@ -116,7 +116,7 @@ router.post("/login", async (req, res) => {
       return res.json({ data: `Bearer ${token}` });
     } else return res.status(400).send({ error: "Wrong password" });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return res.status(400);
   }
 });
@@ -155,7 +155,7 @@ router.post("/sendEmail", async (req, res) => {
     const request = await replace(email, user._id);
     transporter.sendMail(request, (error, info) => {
       if (error) {
-        console.log(error);
+        console.error(error);
         return res.sendStatus(400).send({ error });
       } else {
         console.log("Email sent: " + info.response);
@@ -192,7 +192,7 @@ router.post("/forgotPassword", async (req, res) => {
     await User.updateOne({ email }, { password: hashedPassword });
     return res.sendStatus(200);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return res.sendStatus(400);
   }
 });

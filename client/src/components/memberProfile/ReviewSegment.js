@@ -24,7 +24,6 @@ export default class FeedbackSegment extends Component {
   render() {
     const { error } = this.state;
     const { myProfile, partnerId, reviews, reviewsCount } = this.props;
-    console.log(reviews, "REVIEWSS");
     return (
       <Segment style={{ marginBottom: "1em" }} id="vacancy-segment" padded>
         <Header as="h1" textAlign="center">

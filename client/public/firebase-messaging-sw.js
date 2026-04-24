@@ -11,10 +11,6 @@ firebase.initializeApp({
 // messages.
 const messaging = firebase.messaging();
 messaging.setBackgroundMessageHandler(payload => {
-  console.log(
-    "[firebase-messaging-sw.js NOIS3] Received background message ",
-    payload
-  );
   const { title, body, link, actionTitle, emoji, img } = payload.data;
   const notificationTitle = emoji ? title + String.fromCodePoint(emoji) : title;
   const notificationOptions = {
@@ -33,7 +29,7 @@ messaging.setBackgroundMessageHandler(payload => {
     notificationOptions
   );
 });
-self.addEventListener("notificationclick", function(event) {
+self.addEventListener("notificationclick", function (event) {
   event.notification.close();
   event.waitUntil(clients.openWindow(event.action));
 });

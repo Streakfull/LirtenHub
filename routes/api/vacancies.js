@@ -18,7 +18,6 @@ router.post("/updateRecommendation/:memberID/:vacancyID", async (req, res) => {
     const member = await User.findById(memberID);
     const vacancy = await Vacancy.findById(vacancyID);
     if (vacancy) {
-      console.log("Vacancy beofre update" + vacancy);
 
       if (member) {
         await recommender.addMemberDetails(member);
@@ -32,7 +31,7 @@ router.post("/updateRecommendation/:memberID/:vacancyID", async (req, res) => {
       return res.sendStatus(400);
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.sendStatus(400);
   }
 });
@@ -56,7 +55,7 @@ router.post(
         return res.sendStatus(400);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   }
@@ -70,7 +69,7 @@ router.get("/:id", async (req, res) => {
       return res.status(400).send({ error: "vacancy not found" });
     return res.json({ data: vacancy });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.sendStatus(400);
   }
 });
@@ -82,7 +81,6 @@ router.get("/getRecommendationsNormal/:memberID", async (req, res) => {
     let matchedArray = [];
     let id = memberID;
     const member = await User.findById(id);
-    console.log(member);
     if (allVacancies) {
       if (member) {
         allVacancies.map(vacancy => {
@@ -101,7 +99,6 @@ router.get("/getRecommendationsNormal/:memberID", async (req, res) => {
           }
           if (member.userData.skills.length > 0) {
             member.userData.skills.map(skill => {
-              // console.log(vacancy.skills);
               if (vacancy.skills.length > 0) {
                 if (vacancy.skills.includes(skill)) {
                   matchedObject.skillsMatchCount =
@@ -148,7 +145,7 @@ router.get("/getRecommendationsNormal/:memberID", async (req, res) => {
       return res.sendStatus(400);
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return res.status(400);
   }
 });
@@ -172,7 +169,7 @@ router.get("/getRecommendationsInter/:memberID", async (req, res) => {
       }
     );
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.sendStatus(400);
   }
 });
@@ -186,7 +183,7 @@ router.get("/partnerVacancies/:partnerId", async (req, res) => {
     const vacancies = await Vacancy.find({ "partner._id": partnerId });
     return res.json({ data: vacancies });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.sendStatus(400);
   }
 });
@@ -213,7 +210,7 @@ router.post(
       const vacancy = await Vacancy.create(req.body);
       return res.json({ data: vacancy });
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   }
@@ -278,7 +275,7 @@ router.put(
       );
       return res.sendStatus(200);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   }
@@ -300,7 +297,7 @@ router.delete(
       await JobApplication.deleteMany({ "vacancy._id": deletedVacancy._id });
       return res.sendStatus(200);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   }

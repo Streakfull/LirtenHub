@@ -129,7 +129,6 @@ class EditProfileForm extends React.Component {
       ...allUserData
     };
 
-    console.log(data, "DATA");
     let newData = {};
     this.setState({
       user_id: user._id,
@@ -202,12 +201,10 @@ class EditProfileForm extends React.Component {
         newData[key] = this.getCorrectDate(data[key]);
       }
     });
-    console.log(newData, "NEW");
     this.setState({ userInfo: { ...this.state.userInfo, ...newData } });
   }
   checkInputArray = arr => {
     let result = true;
-    console.log(arr, "ARRAYY");
     arr.map(inp => {
       if (inp.length == 0) result = false;
     });
@@ -218,7 +215,6 @@ class EditProfileForm extends React.Component {
     let allReq = [email, name];
     let MemReq = [dateOfBirth, gender];
     let AdminCoachReq = [dateOfBirth, gender];
-    console.log(type, "TYPE");
     if (!this.checkInputArray(allReq)) {
       return false;
     }
@@ -227,7 +223,6 @@ class EditProfileForm extends React.Component {
         return false;
       }
     } else if (type != "partner") {
-      console.log("IN AdminCoach REQ CHECK");
       if (!this.checkInputArray(AdminCoachReq)) return false;
     }
     return true;
@@ -294,7 +289,6 @@ class EditProfileForm extends React.Component {
     });
   };
   //   handleChangeGeneral = (prop,e,{value}) => {
-  //       console.log(e,value,"EVENT")
   //     // let { userInfo } = this.state;
   //     // if (userInfo) {
   //     //   userInfo[prop] = e.target.value;
@@ -375,7 +369,6 @@ class EditProfileForm extends React.Component {
           newData[key] = data[key];
       }
     });
-    console.log(newData, "New Data");
     axios
       .put(url, newData)
       .then(data => {
@@ -458,7 +451,6 @@ class EditProfileForm extends React.Component {
         this.redirect(user_id, user);
       })
       .catch(error => {
-        console.log(error);
         this.setState({
           errorContent: error.response.data.error,
           hidden: false
@@ -512,7 +504,6 @@ class EditProfileForm extends React.Component {
       addedProjects,
       loading
     } = this.state;
-    console.log(dateOfBirth, "DOB");
     return (
       //   <div class="signup">
       loading ? (

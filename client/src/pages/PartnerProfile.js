@@ -95,7 +95,6 @@ class PartnerProfile extends Component {
     const { partner } = this.state;
     const url = `users/delete/${partner._id}`;
     del(url, {}).then(res => {
-      console.log(res);
       this.logOut();
       this.redirectDeleted();
     });

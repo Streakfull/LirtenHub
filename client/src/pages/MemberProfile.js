@@ -111,7 +111,6 @@ class MemberProfile extends Component {
     const { member } = this.state;
     const url = `users/delete/${member._id}`;
     del(url, {}).then(res => {
-      console.log(res);
       this.logOut();
       this.redirectDeleted();
     });
@@ -180,7 +179,6 @@ class MemberProfile extends Component {
       openJobApps,
       deleteConfirm
     } = this.state;
-    console.log(member, "MEMBER");
     const { id } = this.props.match.params;
     const { userInfo } = this.props;
     let myProfile = false;

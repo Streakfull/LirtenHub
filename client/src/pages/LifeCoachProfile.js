@@ -116,7 +116,6 @@ class LifeCoachProfile extends Component {
     const { lifeCoach } = this.state;
     const url = `users/delete/${lifeCoach._id}`;
     del(url, {}).then(res => {
-      console.log(res);
       this.logOut();
       this.redirectDeleted();
     });
@@ -134,7 +133,6 @@ class LifeCoachProfile extends Component {
     this.setLocationState(lifeCoach);
   };
   redirect = () => {
-    console.log(this.state.lifeCoach, "LIFECOACH");
     this.props.history.push({
       pathname: "/EditProfile",
       user: this.state.lifeCoach

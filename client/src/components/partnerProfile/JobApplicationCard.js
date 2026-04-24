@@ -44,7 +44,6 @@ export default class JobApplicationCard extends Component {
         <Label corner size="mini" icon="times circle" color="red" />
       );
 
-    console.log(this.props.jobApplication.state, "CARD");
     return (
       <Card color="teal">
         <Card.Content>

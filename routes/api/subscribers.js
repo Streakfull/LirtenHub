@@ -44,7 +44,7 @@ const sendEmail = async (userIds, data) => {
     };
     transporter.sendMail(req, (error, info) => {
       if (error) {
-        console.log(error);
+        console.error(error);
         return res.sendStatus(400).send({ error });
       } else {
         console.log("Email sent: " + info.response);
@@ -85,7 +85,7 @@ router.post("/send", async (req, res) => {
     });
     return res.json({ data: sent });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return res.sendStatus(200);
   }
 });
@@ -119,7 +119,7 @@ router.post("/sendAllAdmins", async (req, res) => {
     });
     return res.json({ data: sent });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return res.sendStatus(200);
   }
 });
@@ -156,7 +156,7 @@ router.post("/add", async (req, res) => {
     });
     return res.json({ data: subscriber });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.sendStatus(400);
   }
 });

@@ -54,27 +54,22 @@ class App extends Component {
         });
       });
     } catch (error) {
-      console.log("Unsupported browser for notifications");
+      console.warn("Unsupported browser for notifications");
     }
   }
   askPerm = userId => {
     firebase
       .messaging()
       .requestPermission()
-      .then(function(e = null) {
-        console.log("Granted!" + e);
-
+      .then(function (e = null) {
         return firebase.messaging().getToken();
       })
       .then(token => {
         const url = "subscribers/add";
-        post(url, { userId, token }).then(resp => console.log(resp));
-        console.log("Token:" + token + " " + userId);
+        post(url, { userId, token });
         this.setState({ firebaseToken: token });
       })
-      .catch(function(err) {
-        console.log(err, "ERROR");
-        console.log("Error! :: " + err);
+      .catch(function (err) {
       });
   };
   handleTokenChange = e => {

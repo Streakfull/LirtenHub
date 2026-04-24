@@ -6,7 +6,6 @@ export const get = urlInput => {
   return Axios.get(url, {
     headers: { Authorization: localStorage.getItem("jwtToken") }
   }).then(response => {
-    console.log(response);
     return response.data.data;
   });
 };

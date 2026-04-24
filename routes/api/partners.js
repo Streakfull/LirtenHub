@@ -80,7 +80,7 @@ router.put(
       await updateGlobal(updatePartner, updateOptions);
       return res.sendStatus(200);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.sendStatus(400);
     }
   }

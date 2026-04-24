@@ -4,10 +4,10 @@ const vacanciesFunctions = require("../routes/api/vacancies");
 const memberFunctions = require("../routes/api/members");
 
 const client = new recombee.ApiClient(
-  "lirtenhub",
-  "OQ6Obb9equZ7V1WWQDQBxpKGzAOyD7BtNzeo3i7rHZnxzWF6htw0A8GTjytfRZFB"
+  process.env.RECOMBEE_DB || "lirtenhub",
+  process.env.RECOMBEE_API_KEY || ""
 );
-const resetDatabase = ()=>{
+const resetDatabase = () => {
   client.send(new rqs.ResetDatabase())
 }
 const setVacanciesProperties = () => {
@@ -43,7 +43,6 @@ const addMemberDetails = member => {
   const { skills, location, age, interests, availability } = member.userData;
   const memberID = member._id;
   const currentDate = new Date();
-  console.log("In add memberDetails");
   client.send(
     new rqs.SetUserValues(
       memberID,
@@ -60,7 +59,6 @@ const addMemberDetails = member => {
 };
 
 const addItemDetails = vacancy => {
-  console.log("In add itemDetails")
   const {
     description,
     title,
@@ -101,7 +99,7 @@ const addDetailView = (vacancyID, memberID) => {
       timestamp: currentDate,
       cascadeCreate: true
     }),
-    (err, response) => {}
+    (err, response) => { }
   );
 };
 const getRecommendations = async (memberID, requiredNumber, fn) => {
@@ -112,15 +110,12 @@ const getRecommendations = async (memberID, requiredNumber, fn) => {
         cascadeCreate: true
       }),
       (err, recommended) => {
-        console.log(recommended, "In source");
         fn(recommended);
       }
     )
     .then(recommended => {
       return recommended;
     });
-
-  //   console.log(recommendedItems, "Recommended");
 };
 module.exports = {
   addDetailView,
