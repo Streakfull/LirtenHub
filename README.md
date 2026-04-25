@@ -123,4 +123,3 @@ For production, set the following:
 
 - **Philip Mouris**
 - **Youssef Sherif**
-- **Youssef Fathi**
